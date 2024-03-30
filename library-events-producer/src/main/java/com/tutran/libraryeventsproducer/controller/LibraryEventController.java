@@ -2,6 +2,7 @@ package com.tutran.libraryeventsproducer.controller;
 
 import com.tutran.libraryeventsproducer.domain.LibraryEvent;
 import com.tutran.libraryeventsproducer.producer.LibraryEventsProducer;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class LibraryEventController {
     private final LibraryEventsProducer libraryEventsProducer;
 
     @PostMapping(value = "/libraryevent")
-    public ResponseEntity<LibraryEvent> createLibraryEvent(@RequestBody LibraryEvent libraryEvent) {
+    public ResponseEntity<LibraryEvent> createLibraryEvent(@RequestBody @Valid LibraryEvent libraryEvent) {
         libraryEventsProducer.sendLibraryEvent(libraryEvent);
         return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);
     }
