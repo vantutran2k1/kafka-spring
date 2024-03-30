@@ -1,0 +1,15 @@
+server:
+  port: 8081
+
+spring:
+  kafka:
+    topic: "library-events"
+
+    consumer:
+      bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
+      key-deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
+    admin:
+      properties:
+        bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
